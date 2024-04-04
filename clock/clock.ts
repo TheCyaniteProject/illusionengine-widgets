@@ -31,4 +31,12 @@ function updateClock() {
 updateClock();
 
 // Update the clock every second
-setInterval(updateClock, 1000); 
+setInterval(updateClock, 1000);
+
+setTimeout(() => {
+    console.log('WOOO');
+    
+    parent.postMessage({
+        hello: "world"
+    });
+});
