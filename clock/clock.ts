@@ -1,7 +1,9 @@
+import './clock.css';
 //AI generated
 
 // Create a new widget element
-var container = document.getElementById('clockWidget');
+var container = document.getElementById('clockWidget')!;
+let stuff = 'a';
 
 // Function to update the clock display
 function updateClock() {
@@ -23,8 +25,17 @@ function updateClock() {
 
     // Update the HTML with the current time
     container!.innerHTML = `
-    <span style="font-size: 72px; text-shadow: 2px 2px #000; color:white;">${timeString}</span>
+    <span style="font-size: 72px; text-shadow: 2px 2px #000; color:white;">${timeString}${stuff}</span>
   `;
+
+    const { width, height } = document.body.getBoundingClientRect();
+
+    console.log({ width, height });
+
+    parent.postMessage({
+        method: 'resizeWidget',
+        args: [width, height]
+    });
 }
 
 // Call the updateClock function initially to display the time
@@ -32,11 +43,3 @@ updateClock();
 
 // Update the clock every second
 setInterval(updateClock, 1000);
-
-setTimeout(() => {
-    console.log('WOOO');
-    
-    parent.postMessage({
-        hello: "world"
-    });
-});
